@@ -23,7 +23,7 @@ module.exports.bootstrap = function (cb) {
         sails.assert = require('assert'),
         sails.fs = require('fs'),
         sails.url = 'mongodb://localhost:27017/wohlig';
-    sails.query = function (myfunc) {
+        sails.query = function (myfunc) {
             sails.MongoClient.connect(sails.url, myfunc);
         }
         // It's very important to trigger this callback method when you are finished
