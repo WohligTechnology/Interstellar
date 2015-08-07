@@ -1,9 +1,9 @@
 /**
-* Product.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * Product.js
+ *
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 module.exports = {
     save: function (data, callback) {
@@ -26,7 +26,6 @@ module.exports = {
                         });
                     }
                     if (created) {
-                        console.log("created");
                         callback({
                             value: true
                         });
@@ -56,7 +55,6 @@ module.exports = {
                             });
                         }
                         if (updated) {
-                            console.log(updated);
                             callback({
                                 value: true
                             });
@@ -100,15 +98,15 @@ module.exports = {
                     }
                 }).skip(pagesize * (pagenumber - 1)).limit(pagesize).each(function (err, found) {
                     if (err) {
-                        console.log({
+                        callback({
                             value: false
                         });
+                        console.log(err);
                     }
                     if (found != null) {
                         newreturns.data.push(found);
                     } else {
                         if (found == null) {
-                            console.log(newreturns.data);
                             newcallback++;
                             if (newcallback == 2) {
                                 callback(newreturns);
@@ -131,9 +129,10 @@ module.exports = {
             if (db) {
                 db.collection("product").find().each(function (err, found) {
                     if (err) {
-                        console.log({
+                        callback({
                             value: false
                         });
+                        console.log(err);
                     }
                     if (found != null) {
                         returns.push(found);
@@ -165,7 +164,6 @@ module.exports = {
                         });
                     }
                     if (data != null) {
-                        console.log(data);
                         callback(data);
                     }
                 });
@@ -184,7 +182,6 @@ module.exports = {
                 _id: sails.ObjectID(data._id)
             }, function (err, deleted) {
                 if (deleted) {
-                    console.log(deleted);
                     callback({
                         value: true
                     });
@@ -216,4 +213,3 @@ module.exports = {
         });
     }
 };
-
